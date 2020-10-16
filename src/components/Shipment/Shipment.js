@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import './Shipment.css';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
+import Payment from '../Payment/Payment';
 
 const Shipment = () => {
   const { register, handleSubmit, watch, errors } = useForm();
@@ -14,7 +15,9 @@ const Shipment = () => {
   console.log(watch("example")); // watch input value by passing the name of it
 
   return (
-    <form className="ship-form" onSubmit={handleSubmit(onSubmit)}>
+   <div className="row">
+     <div className="col-md-6">
+     <form className="ship-form" onSubmit={handleSubmit(onSubmit)}>
       <input name="name" defaultValue={loggedInUser.name} ref={register({ required: true })} placeholder="Your Name" />
       {errors.name && <span className="error">Name is required</span>}
      
@@ -29,6 +32,13 @@ const Shipment = () => {
       
       <input type="submit" />
     </form>
+     </div>
+     <div className="col-md-6">
+<h2>pay for me </h2>
+<Payment></Payment>
+
+     </div>
+   </div>
   );
 };
 
